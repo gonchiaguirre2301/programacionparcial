@@ -1,0 +1,77 @@
+// examen.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include "stdlib.h"
+#include "conio.h"
+#include "math.h"
+#define MAX 100
+using namespace std;
+
+float calculo(int N, float  X, int F, float S, int a);
+void prom(int V[], int N, float P, float SU);
+void dif(int V[], int DIF[], int N, float P);
+
+void main()
+{int N, F, a, V[MAX], DIF[MAX];
+float S, X, Suma, P, SU;
+cout<<" Ingrese la base X: ";
+cin>>X;
+do{cout<<" Ingrese el limite (unicamente impar)";
+   cin>>N;
+  }while(N%2==0);
+S=2;
+F=1;
+a=0;
+Suma = calculo(N, X, F, S, a);
+cout<<" Suma de la serie igual a: "<<Suma<<endl;
+getch();
+cout<<" Ingrese las notas de los alumnos en el siguiente vector: "<<endl;
+for (int j=0; j<N; j++)
+    {cout<<" V["<<j+1<<"]= ";
+     cin>>V[j];
+    }
+SU = 0;
+prom(V, N, P, SU);
+cout<<" El promedio es "<<P;
+getch();
+dif( V, DIF, N, P);
+
+
+
+getch();
+}
+
+
+float calculo(int N, float X, int F, float S, int a)
+{for(int i=0;i<=N;i++)
+   {F=F*i;
+    if(i%2!=0)
+      {a=a+1;
+    if (a%2==0)
+       S=S+(pow(X,i)/F);
+    else S=S-(pow(X,i)/F);
+      }
+   }
+return S;
+}
+
+void prom(int V[], int N, float P, float SU)
+{for(int i=0;i<N; i++)
+    SU = SU + V[i];
+P = SU/N;
+}
+void dif(int V[], int DIF[], int N, float P)
+{int j=0;
+	for(int i=0; i<N; i++)
+    {DIF[j]= V[i] - P;
+	 j= j + 1;
+    } 
+cout<<" La diferencia de vectores es: "<<endl;
+for(int k=0;k<N;k++)
+   {cout<<" DIF["<<k+1<<"]="<<DIF[k];
+   }
+}
+
+
